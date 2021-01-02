@@ -31,14 +31,18 @@ days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 matrixportal.preload_font(b"012345789Quarantinedy")  # preload numbers
 while True: 
     t = time.time()
+    dt = time.localtime(t)
+    hour = dt.tm_hour
+    if hour == 0: hour = 12
+    elif hour > 12: hour -= 12
+    ampm = 'PM' if dt.tm_hour >=12 else 'AM'
+    first_line = f"{hour:02}:{(dt.tm_min):02} {ampm}"
+    day_of_week = days[dt.tm_wday]
+    date = ""
     if t % 60 >= 30:
         day = (t - epoch) // seconds_per_day
-        matrixportal.set_text(f"Quarantine\nday {day}")
+        date = f"QD {day}"
     else:
-        dt = time.localtime(t)
-        hour = dt.tm_hour
-        if hour == 0: hour = 12
-        elif hour > 12: hour -= 12
-        ampm = 'PM' if dt.tm_hour >=12 else 'AM'
-        matrixportal.set_text(f"{hour:02}:{(dt.tm_min):02} {ampm}\n{days[dt.tm_wday]} {dt.tm_mday:02}/{dt.tm_mon:02}")
+        date = f"{dt.tm_mday:02}/{dt.tm_mon:02}"
+    matrixportal.set_text(f"{first_line}\n{day_of_week} {date}")
     time.sleep(0.05)
