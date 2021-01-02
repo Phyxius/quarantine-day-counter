@@ -2,6 +2,8 @@
 
 This is a simple internet-connected clock/quarantine day counter. It uses an [Adafruit Matrix Portal](https://www.adafruit.com/product/4745) to display text on an [appropriate 64x32 RGB LED matrix](https://www.adafruit.com/product/2279). Power can be supplied over USB-C or an external power supply.
 
+![](Picture.jpeg)
+
 ## Installation
 
 1. Flash the Matrix Portal to run CircuitPython using Adafruit's instructions. 
