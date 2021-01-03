@@ -8,7 +8,7 @@ TEXT_COLOR = 0x202020
 
 matrixportal = MatrixPortal(
     status_neopixel=board.NEOPIXEL,
-    bit_depth = 8
+    bit_depth = 4
 )
 
 matrixportal.add_text(
