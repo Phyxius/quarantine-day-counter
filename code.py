@@ -4,10 +4,11 @@ import terminalio
 from adafruit_matrixportal.matrixportal import MatrixPortal
 from secrets import secrets
 
-TEXT_COLOR = 0x404040
+TEXT_COLOR = 0x202020
 
 matrixportal = MatrixPortal(
     status_neopixel=board.NEOPIXEL,
+    bit_depth = 8
 )
 
 matrixportal.add_text(
