@@ -4,6 +4,7 @@ import terminalio
 from adafruit_matrixportal.matrixportal import MatrixPortal
 from secrets import secrets
 
+TEXT_COLOR = 0x404040
 
 matrixportal = MatrixPortal(
     status_neopixel=board.NEOPIXEL,
@@ -11,13 +12,19 @@ matrixportal = MatrixPortal(
 
 matrixportal.add_text(
     text_font=terminalio.FONT,
-    text_position=(1, 6),
-    text_color=0x505050,
+    text_position=(3, 6),
+    text_color=TEXT_COLOR,
+    text_scale=2,
+)
+matrixportal.add_text(
+    text_font=terminalio.FONT,
+    text_position=(3, 22),
+    text_color=TEXT_COLOR,
 )
 
-matrixportal.set_text("Connecting\nto WiFi...")
+matrixportal.set_text("Connecting", 1)
 matrixportal.network.connect()
-matrixportal.set_text("Getting\ntime...")
+matrixportal.set_text("Get time", 1)
 matrixportal.get_local_time()
 
 last_time_refresh = time.time()
@@ -35,8 +42,7 @@ while True:
     hour = dt.tm_hour
     if hour == 0: hour = 12
     elif hour > 12: hour -= 12
-    ampm = 'PM' if dt.tm_hour >=12 else 'AM'
-    first_line = f"{hour:02}:{(dt.tm_min):02} {ampm}"
+    first_line = f"{hour:02}:{(dt.tm_min):02}"
     day_of_week = days[dt.tm_wday]
     date = ""
     if t % 60 >= 30:
@@ -44,5 +50,6 @@ while True:
         date = f"QD {day}"
     else:
         date = f"{dt.tm_mday:02}/{dt.tm_mon:02}"
-    matrixportal.set_text(f"{first_line}\n{day_of_week} {date}")
+    matrixportal.set_text(first_line, 0)
+    matrixportal.set_text(f"{day_of_week} {date}", 1)
     time.sleep(0.05)
