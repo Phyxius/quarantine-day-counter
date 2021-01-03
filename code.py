@@ -14,13 +14,13 @@ matrixportal = MatrixPortal(
 
 matrixportal.add_text(
     text_font=terminalio.FONT,
-    text_position=(3, 6),
+    text_position=(3, 9),
     text_color=TEXT_COLOR,
     text_scale=2,
 )
 matrixportal.add_text(
     text_font=terminalio.FONT,
-    text_position=(3, 22),
+    text_position=(3, 24),
     text_color=TEXT_COLOR,
 )
 
