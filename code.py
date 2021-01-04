@@ -5,7 +5,7 @@ from adafruit_matrixportal.matrixportal import MatrixPortal
 from secrets import secrets
 
 TEXT_COLOR = 0x202020
-TIME_UPDATE_INTERVAL = 12 * 60 * 60
+TIME_UPDATE_INTERVAL = 1 * 60 * 60
 
 matrixportal = MatrixPortal(
     status_neopixel=board.NEOPIXEL,
@@ -51,7 +51,7 @@ while True:
         day = (t - epoch) // seconds_per_day
         date = f"QD {day}"
     else:
-        date = f"{dt.tm_mday:02}/{dt.tm_mon:02}"
+        date = f"{dt.tm_mon:02}/{dt.tm_mday:02}"
     matrixportal.set_text(first_line, 0)
     matrixportal.set_text(f"{day_of_week} {date}", 1)
     if (t - last_time_refresh > TIME_UPDATE_INTERVAL):
