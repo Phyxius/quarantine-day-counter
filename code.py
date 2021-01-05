@@ -7,7 +7,7 @@ import rtc
 
 TEXT_COLOR = 0x202020
 TIME_UPDATE_INTERVAL = 1 * 60 * 60
-OPENWEATHER_API_URL = f"https://api.openweathermap.org/data/2.5/weather?q={secrets['zip']}&appid={secrets['openweather_api_key']}&units={secrets.get('units', 'imperial')}"
+OPENWEATHER_API_URL = f"https://api.openweathermap.org/data/2.5/weather?q={secrets['zip']},{secrets.get('country','US')}&appid={secrets['openweather_api_key']}&units={secrets.get('units', 'imperial')}"
 TEMP_PATH = ["main", "temp"]
 
 matrixportal = MatrixPortal(
